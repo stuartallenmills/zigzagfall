@@ -1,0 +1,36 @@
+<head>
+  <title>zigzagfall</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+</head>
+
+<body>
+  <div class='top'>
+  {{> loginButtons align="right"}}
+  {{> bannerT}}
+ </div> 
+ <div class='below'>
+  <h1 id="knowme"> Get to know me better, man </h1>
+  <img id="lifestyle" src="sorry_tn.jpg">
+  </div>
+  <div class="thebigone">
+  <img src="dreams.jpg" id="dreams">
+ </div>
+
+</body>
+
+<template name="bannerT">
+ <div class='banner'>
+  <img id='flyer' src="flyer128.png">
+  <div class='zig bullet'>Zig</div>
+   <div class='zag bullet'>Zag</div>
+  <div class='fall bullet'>Fall</div>
+ </div>
+</template>
+
+
+<template name="hello">
+  <button>Click Me</button>
+  <p>You've pressed the button {{counter}} times.</p>
+</template>
+
