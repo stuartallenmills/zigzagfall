@@ -9,6 +9,32 @@ body {
 
 }
 
+.imgContain {
+  width:90%;
+  display: flex;
+  flex-wrap: wrap;
+  margin: 10px auto;
+  padding: 20px 10px;
+
+  align-items: center;
+  box-shadow: 2px 2px 5px;
+  text-align: center;
+  background-color: lightgoldenrodyellow;
+
+    img {
+      display:block;
+      margin: auto;
+      float:left;
+      width:90%;
+      border:1px solid #7f7f7f;
+    }
+
+    h1 {
+      display:block;
+      margin:auto;
+    }
+}
+
 @keyframes dofly {
   0% {transform: rotate(0deg); left:-200px; top:-400px}
  25% {tansform: rotate(-20deg); left:-10%; top:-200px}
@@ -23,8 +49,10 @@ body {
 #knowme {
   width: 90%;
   text-align: center;
-  box-shadow: 2px 2px 5px inset;
+//  box-shadow: 2px 2px 5px inset;
   padding: 10px;
+  margin: 10px auto;
+  background-color: lemonchiffon;
 }
 #lifestyle {
   display: block;
@@ -75,12 +103,14 @@ img {
 }
 
 .below {
- padding-left: 5%;
+ padding-left: 0%;
  background-color: #fefefe;
  width:100%;
  position: relative;
  border-top: 2px solid darkgray;
  align-items: center;
+ display: flex;
+ flex-wrap: wrap;
 }
 
 .banner {
