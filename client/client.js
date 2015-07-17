@@ -1,5 +1,5 @@
   // counter starts at 0
-  Session.setDefault('counter', 0);
+  Session.setDefault('lineCount', 0);
 
   Meteor.subscribe('Lines');
 
@@ -31,7 +31,15 @@ var lineInput = function (event) {
     },
 
     lines: function() {
+      var lcount= Session.get('lineCount');
       var lines= Lines.find({}, {sort: {date: -1}});
+      var nlines = lines.count();
+      if (nlines > lcount)   {
+
+        var sound = document.getElementById("audio");
+          sound.play();
+          }  
+      Session.set('lineCount', nlines);   
       var larr = lines.fetch();
       console.log(larr);
       var f = larr[0];
@@ -69,10 +77,15 @@ var lineInput = function (event) {
     'keypress #whatsup': function(event) {
       if ((event.which == 13) || (event.which == 9)) {
         lineInput(event);
-      }
+       }
+     },
 
-    }
-  })
+      'click #audiob': function  (event) {
+          var sound = document.getElementById("audio");
+          sound.play();
+      }
+  });
+
   Template.userPill.helpers ({
     labelclass: function () {
       console.log(this);

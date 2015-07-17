@@ -23,14 +23,18 @@
    </div>
  </div>
 <div >
-  <div> Online users!</div>
+  </div>
+
+{{#if currentUser}}
+  <div class='onlineDiv'> Online: 
  {{#each users}}
    {{> userPill}}
    {{/each}}
-  </div>
-
+ </div>
   <div>
+  <audio id="audio" src="notify.wav" autostart="false" ></audio>
 
+ 
   <input type="text" checked="aline" placeholder="whats up" id="whatsup">
 
    <div> Lines </div>
@@ -44,6 +48,7 @@
       </div>
      {{/each}}
      </div>
+     {{/if}}
 
 </body>
 
