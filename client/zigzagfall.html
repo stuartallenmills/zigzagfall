@@ -22,7 +22,29 @@
    <h1 >Just Chillin.  Life is good</h1>
    </div>
  </div>
- 
+<div >
+  <div> Online users!</div>
+ {{#each users}}
+   {{> userPill}}
+   {{/each}}
+  </div>
+
+  <div>
+
+  <input type="text" checked="aline" placeholder="whats up" id="whatsup">
+
+   <div> Lines </div>
+    {{#each lines}}
+     <div class="aline">
+
+      <span class="usrline"> {{user}}</span> @ {{formatDate date}} 
+          <div class="theline">
+           {{aline}} 
+          </div>
+      </div>
+     {{/each}}
+     </div>
+
 </body>
 
 <template name="bannerT">
@@ -39,4 +61,8 @@
   <button>Click Me</button>
   <p>You've pressed the button {{counter}} times.</p>
 </template>
+
+<template name="userPill">
+ <span class="label {{labelclass}}">{{username}}</span>
+ </template>
 
