@@ -6,7 +6,12 @@
 
 <body>
   <div class='top'>
+  <!-- this provides the login buttons -->
   {{> loginButtons align="right"}}
+    <!-- bannerT template displays the Zig Zag Fall.
+        It is defined below!
+        The actuall animation is defined in 
+        zigzagfall.css -->
   {{> bannerT}}
  </div> 
  <div class="adivide">" "</div>
@@ -24,21 +29,28 @@
  </div>
 <div >
   </div>
-
+ <!-- if you are logged in (currentUser) then
+       display all people that have signed up.
+       If they are online color the name green -->
 {{#if currentUser}}
   <div class='onlineDiv'> Online: 
  {{#each users}}
-   {{> userPill}}
+   {{> userPill}}  <!-- display user. See userPill template below -->
    {{/each}}
  </div>
   <div>
-  <audio id="audio" src="notify.wav" autostart="false" ></audio>
+ <!-- the audio is here for generating alerts
+      when you get a new message -->  
+ <audio id="audio" src="notify.wav" autostart="false" ></audio>
 
- 
+  <!-- the input allows you to type in new text that
+      is broadcast to everyone -->
   <input type="text" checked="aline" placeholder="whats up" id="whatsup">
 
    <div> Lines </div>
-    {{#each lines}}
+  <!-- this displays all the lines that have been
+        sent by everyone-->    
+        {{#each lines}}
      <div class="aline">
 
       <span class="usrline"> {{user}}</span> @ {{formatDate date}} 
@@ -62,10 +74,7 @@
 </template>
 
 
-<template name="hello">
-  <button>Click Me</button>
-  <p>You've pressed the button {{counter}} times.</p>
-</template>
+
 
 <template name="userPill">
  <span class="label {{labelclass}}">{{username}}</span>
