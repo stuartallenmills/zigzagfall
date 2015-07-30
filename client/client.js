@@ -1,5 +1,14 @@
   // counter starts at 0
-  Session.setDefault('lineCount', 0);
+ 
+ Accounts.ui.config({
+   requestPermissions: {
+     // facebook: ['user_likes']
+   },
+   requestOfflineToken: {
+     // google: true
+   },
+   passwordSignupFields: 'USERNAME_AND_EMAIL' //  One of 'USERNAME_AND_EMAIL', 'USERNAME_AND_OPTIONAL_EMAIL', 'USERNAME_ONLY', or 'EMAIL_ONLY' (default).
+ });
 
   Meteor.subscribe('Lines');
 
@@ -10,6 +19,7 @@
 
 var lineInput = function (event) {
       var val ={};
+      try {
       val.aline = event.currentTarget.value;
       if (val.aline.length < 1) {
         return;
@@ -17,8 +27,13 @@ var lineInput = function (event) {
       val.user = Meteor.user().username;
       val.date = new Date();
       console.log(val);
-      Lines.insert(val);
+     // Lines.insert(val);
+      Meteor.call('doupdate', val);
       event.currentTarget.value="";
+    }
+    catch (err) {
+      alert("error -"+ err);
+    }
  
 }
   Template.body.helpers ( {
