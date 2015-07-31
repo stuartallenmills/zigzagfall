@@ -1,5 +1,9 @@
   // counter starts at 0
- 
+ TheLines = new Mongo.Collection("lines");
+
+
+   Meteor.subscribe("lines");
+
  Accounts.ui.config({
    requestPermissions: {
      // facebook: ['user_likes']
@@ -10,7 +14,8 @@
    passwordSignupFields: 'USERNAME_AND_EMAIL' //  One of 'USERNAME_AND_EMAIL', 'USERNAME_AND_OPTIONAL_EMAIL', 'USERNAME_ONLY', or 'EMAIL_ONLY' (default).
  });
 
-  Meteor.subscribe('Lines');
+Session.set('lineCount', 0);
+ 
 
   Template.bannerT.rendered = function () {
  // $( '.zig' ).toggle('slide',{direction: 'right,down'} , 1200);
@@ -27,8 +32,8 @@ var lineInput = function (event) {
       val.user = Meteor.user().username;
       val.date = new Date();
       console.log(val);
-     // Lines.insert(val);
-      Meteor.call('doupdate', val);
+    //  Lines.insert(val);
+       Meteor.call('doupdate', val);
       event.currentTarget.value="";
     }
     catch (err) {
@@ -46,20 +51,24 @@ var lineInput = function (event) {
     },
 
     lines: function() {
+      try {
       var lcount= Session.get('lineCount');
-      var lines= Lines.find({}, {sort: {date: -1}});
+
+      var lines= TheLines.find({}, {sort: {date: -1}});
       var nlines = lines.count();
+  
       if (nlines > lcount)   {
 
         var sound = document.getElementById("audio");
           sound.play();
           }  
+         
       Session.set('lineCount', nlines);   
-      var larr = lines.fetch();
-      console.log(larr);
-      var f = larr[0];
-      console.log(f);
+ 
       return lines;
+      } catch (err) {
+        alert("error getting lines "+ err)
+      }
     },
 
     formatDate: function(date) {
@@ -111,12 +120,7 @@ var lineInput = function (event) {
     }
   })
 
-  Template.hello.helpers({
-    counter: function () {
-      return Session.get('counter');
-    }
-  });
-
+ 
   Template.hello.events({
     'click button': function () {
       // increment the counter when button is clicked
@@ -124,9 +128,3 @@ var lineInput = function (event) {
     }
   });
 
-Accounts.ui.config({
- requestPermissions: {
-    facebook: ['user_likes']
-  },
-  passwordSignupFields: "USERNAME_AND_EMAIL"
-});
