@@ -15,11 +15,21 @@
  });
 
 Session.set('lineCount', 0);
+Session.set('timer',0 );
  
+ timefunc= function  () {
+   // body...
+   var val=Session.get('timer');
+   val=val+1;
+   Session.set('timer', val);
+   $('#time').html(val);
+ }
 
   Template.bannerT.rendered = function () {
  // $( '.zig' ).toggle('slide',{direction: 'right,down'} , 1200);
  // $( '.zag' ).delay(800).toggle('slide', {direction: 'left'} , 1200);
+   myAudio = new Audio("sounds-937-job-done.mp3");
+   Meteor.setInterval(timefunc, 1000);
 };
 
 var lineInput = function (event) {
@@ -58,10 +68,8 @@ var lineInput = function (event) {
       var nlines = lines.count();
   
       if (nlines > lcount)   {
-
-        var sound = document.getElementById("audio");
-          sound.play();
-          }  
+          myAudio.play();
+      }
          
       Session.set('lineCount', nlines);   
  
@@ -104,9 +112,8 @@ var lineInput = function (event) {
        }
      },
 
-      'click #audiob': function  (event) {
-          var sound = document.getElementById("audio");
-          sound.play();
+      'click #dosound': function  (event, template) {
+                  myAudio.play();
       }
   });
 
@@ -121,10 +128,5 @@ var lineInput = function (event) {
   })
 
  
-  Template.hello.events({
-    'click button': function () {
-      // increment the counter when button is clicked
-      Session.set('counter', Session.get('counter') + 1);
-    }
-  });
+ 
 

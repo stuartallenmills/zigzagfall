@@ -1,5 +1,5 @@
 <head>
-  <title>zigzagfall</title>
+  <title>izigzagfall</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 </head>
@@ -14,7 +14,6 @@
         zigzagfall.css -->
   {{> bannerT}}
  </div> 
- <div class="adivide">" "</div>
  <div class='below'>
   <h1 id="knowme"> Get to know me better, man </h1>
   <img id="lifestyle" src="sorry_tn.jpg">
@@ -22,10 +21,12 @@
   <div class="imgContain">
    <img src="dreams.jpg" >
    </div>
+   <!-- 
   <div class="imgContain">
     <img src="BunnyYawn.gif" id="bunnyYawn">
    <h1 >Just Chillin.  Life is good</h1>
    </div>
+   -->
  </div>
 <div >
   </div>
@@ -39,15 +40,13 @@
    {{/each}}
  </div>
   <div>
- <!-- the audio is here for generating alerts
-      when you get a new message -->  
- <audio id="audio" src="notify.wav" autostart="false" ></audio>
+
 
   <!-- the input allows you to type in new text that
       is broadcast to everyone -->
   <input type="text" checked="aline" placeholder="whats up" id="whatsup">
 
-   <div> Lines </div>
+   <div> <button id="dosound" class="label">Enable Message Sound</button> Lines <span id="time">0</span></div>
   <!-- this displays all the lines that have been
         sent by everyone-->    
         {{#each lines}}
@@ -67,8 +66,8 @@
 <template name="bannerT">
  <div class='banner'>
   <img id='flyer' src="flyer128.png">
- 
-  <div class='zig bullet'>I Zig</div>
+  <div class="i bullet">I</div>
+  <div class='zig bullet'>Zig</div>
    <div class='zag bullet'>Zag</div>
   <div class='fall bullet'>Fall</div>
  </div>
